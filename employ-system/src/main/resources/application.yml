@@ -1,0 +1,17 @@
+spring:
+  jackson:
+    time-zone: GMT+9
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: @profileActive@
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 20MB
+      enabled: true
+      location: E://Temp1
+  devtools:
+    restart:
+      enabled: true
+  cache:
+    type: GENERIC

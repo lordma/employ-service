@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lordma.employ.system.mapper.MonthFileMapper">
+    <!--    分页查询    -->
+<select id="getWorkInfoByStaffId" resultType="com.lordma.employ.system.dto.WorkInfo" parameterType="com.lordma.employ.system.entity.MonthFile">
+    SELECT
+        ymonth,
+        month_work_hours AS totalHours,
+        MAX(CASE file_type_id WHEN '1' THEN '1' ELSE '' END) AS workFileType,
+        MAX(CASE file_type_id WHEN '2' THEN '2' ELSE '' END) AS invoiceFileType,
+        MAX(CASE file_type_id WHEN '3' THEN '3' ELSE '' END) AS commuteFileType
+    FROM
+        month_file
+    WHERE
+        staff_id = #{monthFile.staffId}
+    GROUP BY
+        ymonth,
+        month_work_hours
+    ORDER BY
+        ymonth DESC
+</select>
+</mapper>
